@@ -5,6 +5,40 @@
 }
 
 .card-title {
-	font-size: large;
+	font-size: 40px;
 	font-weight: bold;
+	text-align: center;
+}
+
+.alternateSignUpMethods {
+	margin-top: 5vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	height: 12vh;
+}
+
+.alternateSignUpMethods span {
+	align-self: center;
+}
+
+label {
+	font-size: 1.1vw;
+}
+
+#signup-email,
+#signup-password {
+	font-size: 1.1vw;
+}
+
+.signup-form {
+	font-size: 1.1vw;
+}
+
+.alternateSignUpMethods {
+	font-size: 1vw;
+}
+
+.signup-form button {
+	width: 100%;
 }

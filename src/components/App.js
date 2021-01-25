@@ -4,7 +4,7 @@ import Dashboard from "./Dashboard";
 import LoginPage from "./LoginPage";
 import Signup from "./Signup";
 import { useAuth } from './../contexts/AuthContext';
-
+import '../assets/css/app.css'
 
 function App() {
 

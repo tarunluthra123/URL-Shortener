@@ -9,7 +9,7 @@ export function useAuth() {
 }
 
 export function AuthProvider(props) {
-    const [currentUser, setCurrentUser] = useState()
+    const [currentUser, setCurrentUser] = useState(null)
     const history = useHistory()
 
     function signup(email, password) {
@@ -19,13 +19,12 @@ export function AuthProvider(props) {
 
     function login(email, password) {
         auth.signInWithEmailAndPassword(email, password)
-        history.push('/')
     }
 
     function logout() {
         auth.signOut()
     }
-
+    
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             setCurrentUser(user)

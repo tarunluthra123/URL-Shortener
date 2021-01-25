@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from './../contexts/AuthContext';
 import { useLocation } from 'react-router-dom'
+import Layout from "./Layout";
 
 const Dashboard = (props) => {
     const [list, setList] = useState([])
@@ -62,15 +63,17 @@ const Dashboard = (props) => {
 	},[location,redirectList])
 
     return (
-        <div>
-            Dashboard
-            {error && <h3>Error : {error}</h3>}
-            {list && list.map(item => <span>
-                Long URL = {item.longUrl}<br/>
-                Short URL = {item.shortUrl} <br/>
-                <button>Modify</button> <br/><br/>
-            </span>)}
-        </div>
+        <Layout>
+            <div>
+                Dashboard
+                {error && <h3>Error : {error}</h3>}
+                {list && list.map(item => <span>
+                    Long URL = {item.longUrl}<br/>
+                    Short URL = {item.shortUrl} <br/>
+                    <button>Modify</button> <br/><br/>
+                </span>)}
+            </div>
+        </Layout>
     );
 };
 
