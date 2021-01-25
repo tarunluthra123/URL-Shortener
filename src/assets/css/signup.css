@@ -1,0 +1,10 @@
+.signupContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+.card-title {
+	font-size: large;
+	font-weight: bold;
+}
