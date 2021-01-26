@@ -18,7 +18,7 @@ export function AuthProvider(props) {
     }
 
     function login(email, password) {
-        auth.signInWithEmailAndPassword(email, password)
+        return auth.signInWithEmailAndPassword(email, password)
     }
 
     function logout() {

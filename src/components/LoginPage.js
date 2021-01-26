@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Layout from './Layout';
-import { Form, Card } from 'react-bootstrap';
+import { Form, Card, Alert } from 'react-bootstrap';
 import { Button, Icon } from 'semantic-ui-react';
 import { useAuth } from './../contexts/AuthContext';
 
@@ -9,6 +9,8 @@ const LoginPage = (props) => {
 		email: '',
 		password: ''
 	})
+	const [error, setError] = useState(null)
+	const [loading, setLoading] = useState(false)
 	
 	const { login } = useAuth()
 
@@ -21,8 +23,16 @@ const LoginPage = (props) => {
 		})
 	}
 
-	function handleSubmit() {
-		login(inputDetails.email, inputDetails.password)
+	async function handleSubmit() {
+		setError(null)
+		setLoading(true)
+		try {
+			await login(inputDetails.email, inputDetails.password)
+		}
+		catch (e) {
+			setError(e.message)
+		}
+		setLoading(false)
 	}
 
 	function handleGoogleLogin() {
@@ -33,6 +43,7 @@ const LoginPage = (props) => {
 		<Layout>
 			<div className="container signupContainer">
 				<Card>
+					{error && <Alert variant="danger">{error}</Alert>}
 					<Card.Body>
 						<h1 className="card-title">Log in</h1>
 						<Card.Text>
@@ -45,7 +56,7 @@ const LoginPage = (props) => {
 									<Form.Label>Password</Form.Label>
 									<Form.Control type="password" placeholder="Password" name="password" id="signup-password" className="signup-form-control" onChange={handleChange}/>
 								</Form.Group>
-								<Button type="submit" color="blue" size="large" onClick={handleSubmit}>
+								<Button type="submit" color="blue" size="large" onClick={handleSubmit} disabled={loading}>
 									Log in
 								</Button>
 							</div>
@@ -53,7 +64,7 @@ const LoginPage = (props) => {
 							<div className="alternateSignUpMethods">
 								<span>Or simply sign up with</span>
 								<br/>
-								<Button color='google plus' onClick={handleGoogleLogin}>
+								<Button color='google plus' onClick={handleGoogleLogin} disabled={loading}>
 									<Icon name='google'/>Google
 								</Button>
 							</div>
