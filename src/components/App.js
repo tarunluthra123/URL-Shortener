@@ -5,6 +5,8 @@ import LoginPage from "./LoginPage";
 import Signup from "./Signup";
 import { useAuth } from './../contexts/AuthContext';
 import '../assets/css/app.css'
+import CreateNew from "./CreateNew";
+import EditLink from "./EditLink";
 
 function App() {
 
@@ -14,6 +16,8 @@ function App() {
 				<Switch>
 					<Route path="/login" component={LoginPage}></Route>
 					<Route path="/signup" component={Signup}></Route>
+					<Route exact path='/urls/new' component={CreateNew}></Route>
+					<Route path='/urls/:path' component={EditLink}></Route>
 					<Route path="/" component={Dashboard}></Route>
 				</Switch>
 			</Router>

@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from './../contexts/AuthContext';
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import Layout from "./Layout";
+import { Alert } from 'react-bootstrap'
+import ListItem from './ListItem'
+import '../assets/css/dashboard.css'
+import { Button } from 'semantic-ui-react'
 
 const Dashboard = (props) => {
     const [list, setList] = useState([])
@@ -38,9 +42,12 @@ const Dashboard = (props) => {
         }
         else {
             setError(null)
+            const arr = []
             snapshot.forEach(doc => {
-                setList(arr => [...arr,doc.data()])
+                arr.push(doc.data())
             })
+
+            setList(arr)
         }
     }
 
@@ -60,18 +67,29 @@ const Dashboard = (props) => {
             }
             window.location.href = obj.longUrl
         }
-	},[location,redirectList])
+	},[location, redirectList])
 
     return (
         <Layout>
-            <div>
-                Dashboard
-                {error && <h3>Error : {error}</h3>}
-                {list && list.map(item => <span>
-                    Long URL = {item.longUrl}<br/>
-                    Short URL = {item.shortUrl} <br/>
-                    <button>Modify</button> <br/><br/>
-                </span>)}
+            <div className="dashboard-container">
+                <span className="dashboard-header">
+                    <span>Your Shortlinks</span>
+                    <Link to='/urls/new'>
+                        <Button color='blue' size="large">Create new+</Button>
+                    </Link>
+                </span>
+                {error && <Alert variant="danger">{error}</Alert>}
+                {list.length > 0 && 
+                    <table className="dashboard-table">
+                        <tr>
+                            <th>S.No.</th>                    
+                            <th>Long URL</th>
+                            <th>Short URL</th>
+                            <th>Modify</th>
+                        </tr>
+                        {list.map((item,index) => <ListItem item={item} sno={index+1}/>)}
+                    </table>
+                }
             </div>
         </Layout>
     );

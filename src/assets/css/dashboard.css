@@ -1,0 +1,58 @@
+table.dashboard-table {
+    border: 5px solid black;
+    width: 92%;
+    font-size: 1vw;
+    margin: 2vh 2.1vw;
+}
+
+.dashboard-table th,
+.dashboard-table td {
+    padding: 0.5em;
+}
+
+.dashboard-table tr:hover {
+    background-color: #249dbe;
+}
+th {
+    color: black;
+}
+tr,
+tr a,
+tr a:hover {
+    color: rgb(255, 255, 255);
+}
+
+tr:nth-child(even) {
+    background-color: #1687a7;
+}
+tr:nth-child(odd) {
+    background-color: #00587a;
+}
+tr:first-child {
+    background-color: #d3e0ea;
+}
+
+tr:first-child:hover {
+    background-color: #f6f5f5;
+}
+
+td:first-child,
+td:last-child,
+th:first-child,
+th:last-child {
+    text-align: center;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 2vh 2.5vw;
+    align-items: center;
+}
+
+.dashboard-header span {
+    font-size: 3.5vh;
+    font-weight: bold;
+    text-decoration: underline;
+    color: #eeeeee;
+}

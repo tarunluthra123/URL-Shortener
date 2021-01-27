@@ -1,40 +1,46 @@
 .header {
-	width: 100vw;
-	height: 10vh;
-	background-color: rgb(48, 47, 47);
-	display: flex;
-	justify-content: space-around;
-	flex-direction: row;
-	color: white;
-	align-items: center;
-	font-family: "Roboto Slab", serif;
-	font-size: 1.1vw;
+    width: 100vw;
+    height: 10vh;
+    background-color: #222831;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    color: white;
+    align-items: center;
+    font-family: "Roboto Slab", serif;
+    font-size: 1.1vw;
 }
 
 #logo img {
-	height: 5vh;
+    height: 5vh;
 }
 
 .header a {
-	color: white;
-	text-decoration: none;
+    color: white;
+    text-decoration: none;
 }
 
 .navbar {
-	display: flex;
-	align-content: flex-end;
-	/* background-color: red; */
-	left: 15vw;
-	width: 25vw;
+    display: flex;
+    align-content: flex-end;
+    /* background-color: red; */
+    left: 15vw;
+    width: 25vw;
 }
 
 .navlinks {
-	display: flex;
-	justify-content: space-between;
-	/* background-color: orange; */
-	width: 50%;
+    display: flex;
+    justify-content: space-between;
+    /* background-color: orange; */
+    width: 50%;
 }
 
 .body-container {
-	padding-top: 5vh;
+    padding-top: 5vh;
+    background-color: #00adb5;
+    min-height: 90vh;
+    border-radius: 5%;
+}
+.layout-container {
+    background-color: #393e46;
 }

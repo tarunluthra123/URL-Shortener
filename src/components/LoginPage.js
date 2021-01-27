@@ -33,6 +33,9 @@ const LoginPage = (props) => {
 			setError(e.message)
 		}
 		setLoading(false)
+		if (!error) {
+			props.history.push('/')
+		}
 	}
 
 	function handleGoogleLogin() {

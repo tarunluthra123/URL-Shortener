@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from './../contexts/AuthContext';
-import { Card, Form } from 'react-bootstrap'
+import { Card, Form, Alert } from 'react-bootstrap'
 import { Button, Icon } from 'semantic-ui-react'
 import '../assets/css/signup.css'
 import Layout from './Layout';
@@ -10,8 +10,10 @@ const Signup = (props) => {
 		email: '',
 		password: ''
 	})
+	const [error, setError] = useState(null)
+	const [loading, setLoading] = useState(false);
 	
-	const { signup } = useAuth()
+	const { signup, login } = useAuth()
 
 	function handleChange(e) {
 		setInputDetails(prevDetails => {
@@ -22,9 +24,21 @@ const Signup = (props) => {
 		})
 	}
 
-	function handleSubmit() {
-		console.log("ok",inputDetails)
-		signup(inputDetails.email, inputDetails.password)
+	async function handleSubmit() {
+		setLoading(true)
+		setError(null)
+
+		try {
+			await signup(inputDetails.email, inputDetails.password)
+		}
+		catch (error) {
+			setError(error.message)
+		}
+		setLoading(false)
+		if (!error && !loading) {
+			await login(inputDetails.email, inputDetails.password)
+			props.history.push('/')
+		}
 	}
 
 	function handleGoogleSignup() {
@@ -35,6 +49,7 @@ const Signup = (props) => {
 		<Layout>
 			<div className="container signupContainer">
 				<Card>
+					{error && <Alert variant="danger">{error}</Alert>}
 					<Card.Body>
 						<h1 className="card-title">Sign up</h1>
 						<Card.Text>
@@ -50,7 +65,7 @@ const Signup = (props) => {
 									<Form.Label>Password</Form.Label>
 									<Form.Control type="password" placeholder="Password" name="password" id="signup-password" className="signup-form-control" onChange={handleChange}/>
 								</Form.Group>
-								<Button type="submit" color="blue" size="large" onClick={handleSubmit}>
+								<Button type="submit" color="blue" size="large" onClick={handleSubmit} disabled={loading}>
 									Sign up
 								</Button>
 							</div>
@@ -58,7 +73,7 @@ const Signup = (props) => {
 							<div className="alternateSignUpMethods">
 								<span>Or simply sign up with</span>
 								<br/>
-								<Button color='google plus' onClick={handleGoogleSignup}>
+								<Button color='google plus' onClick={handleGoogleSignup} disabled={loading}>
 									<Icon name='google'/>Google
 								</Button>
 							</div>
