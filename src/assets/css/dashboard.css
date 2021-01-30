@@ -56,3 +56,7 @@ th:last-child {
     text-decoration: underline;
     color: #eeeeee;
 }
+
+.shortUrl-span {
+    cursor: pointer;
+}

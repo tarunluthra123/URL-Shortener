@@ -1,0 +1,18 @@
+.create-new-card {
+    padding: 1rem;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.create-new-card h1 {
+    font-size: 3em;
+    padding-left: 1.1rem;
+}
+
+.create-new-card p {
+    font-size: 1.2em;
+    padding-left: 1.3rem;
+}

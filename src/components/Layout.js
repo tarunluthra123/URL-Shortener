@@ -7,8 +7,6 @@ import fire from '../assets/fire.jpg'
 const Layout = (props) => {
     const { currentUser, logout } = useAuth()
 
-
-
     return (
        <div className="layout-container">
             <div className="header">
